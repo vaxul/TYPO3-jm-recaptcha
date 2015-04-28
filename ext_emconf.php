@@ -1,0 +1,39 @@
+<?php
+
+/***************************************************************
+ * Extension Manager/Repository config file for ext "jm_recaptcha".
+ *
+ * Auto generated 28-04-2015 23:03
+ *
+ * Manual updates:
+ * Only the data in the array - everything else is removed by next
+ * writing. "version" and "dependencies" must not be touched!
+ ***************************************************************/
+
+$EM_CONF[$_EXTKEY] = array (
+	'title' => 'reCAPTCHA',
+	'description' => 'reCAPTCHA - Stop Spam. Read Books. For more information visit http://recaptcha.net/',
+	'category' => 'fe',
+	'version' => '1.3.3',
+	'state' => 'stable',
+	'uploadfolder' => 0,
+	'createDirs' => '',
+	'clearcacheonload' => 0,
+	'author' => 'Markus Blaschke',
+	'author_email' => 'blaschke@teqneers.de',
+	'author_company' => 'TEQneers GmbH & Co. KG',
+	'constraints' =>
+	array (
+		'depends' =>
+		array (
+			'php' => '5.2.0-0.0.0',
+			'typo3' => '4.2.0-0.0.0',
+		),
+		'conflicts' =>
+		array (
+		),
+		'suggests' =>
+		array (
+		),
+	),
+);
