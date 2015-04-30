@@ -19,9 +19,9 @@ $EM_CONF[$_EXTKEY] = array (
 	'uploadfolder' => 0,
 	'createDirs' => '',
 	'clearcacheonload' => 0,
-	'author' => 'Markus Blaschke',
-	'author_email' => 'blaschke@teqneers.de',
-	'author_company' => 'TEQneers GmbH & Co. KG',
+	'author' => 'Markus Blaschke, Sebastian Michaelsen',
+	'author_email' => 'mblaschke82@gmail.com',
+	'author_company' => '',
 	'constraints' =>
 	array (
 		'depends' =>
