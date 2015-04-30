@@ -1,2 +1,0 @@
-   # cat=Old fetch method; type=boolean; label=Use old fetch method (fsockopen) instead of TYPO3 api
-oldFetchMethod =

@@ -1,5 +1,7 @@
 plugin.tx_jmrecaptcha {
 
+	captcha_type = {$plugin.tx_jmrecaptcha.captcha_type}
+
 	api_server = {$plugin.tx_jmrecaptcha.api_server}
 	api_server_secure = {$plugin.tx_jmrecaptcha.api_server_secure}
 	verify_server = {$plugin.tx_jmrecaptcha.verify_server}
