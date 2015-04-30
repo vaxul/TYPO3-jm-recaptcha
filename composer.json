@@ -1,0 +1,16 @@
+{
+	"name": "blaschke/jm-recaptcha",
+	"authors": [
+		{
+			"name": "Markus Blaschke",
+			"email": "blaschke@teqneers.de",
+			"role": "developer"
+		},
+		{
+			"name": "Sebastian Michaelsen",
+			"email": "sebastian@app-zap.de",
+			"role": "developer"
+		}
+	],
+	"type": "typo3-cms-extension"
+}
