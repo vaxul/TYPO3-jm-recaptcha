@@ -79,7 +79,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @return string
 	 */
 	protected function renderNoCaptcha() {
-		return '<div class="g-recaptcha" data-sitekey="' . $this->conf['public_key'] . '"></div>';
+		return '<div class="g-recaptcha" data-sitekey="' . htmlspecialchars($this->conf['public_key']) . '"></div>';
 	}
 
 	/**
