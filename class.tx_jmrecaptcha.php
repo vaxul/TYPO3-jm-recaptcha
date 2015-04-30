@@ -62,6 +62,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		} elseif ($this->conf['captcha_type'] === 'recaptcha') {
 			return $this->renderReCaptcha($error);
 		}
+		return NULL;
 	}
 
 	protected function initConfiguration() {
@@ -168,7 +169,8 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	/**
 	 * Validate reCAPTCHA challenge/response
 	 *
-	 * @return  array    Array with verified- (boolean) and error-code (string)
+	 * @return array
+	 * @throws Exception
 	 */
 	public function validateReCaptcha() {
 		$this->initConfiguration();
@@ -219,6 +221,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * Query reCAPTCHA server for captcha-verification
 	 * @param array $data
 	 * @return array Array with verified- (boolean) and error-code (string)
+	 * @throws Exception
 	 */
 	protected function query_verification_server($data) {
 
@@ -283,11 +286,10 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @return  mixed
 	 */
 	protected function getExtConf($name, $defaultValue = NULL) {
-		global $TYPO3_CONF_VARS;
 
 		if ($this->extConf === NULL) {
 			// Load ext conf
-			$this->extConf = unserialize($TYPO3_CONF_VARS['EXT']['extConf']['jm_recaptcha']);
+			$this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['jm_recaptcha']);
 			if (!is_array($this->extConf)) {
 				$this->extConf = array();
 			}
