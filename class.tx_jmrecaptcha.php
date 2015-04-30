@@ -231,7 +231,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 
 		// find first occurence of '//' inside server string
-		$verifyServerInfo = @parse_url($this->conf['verify_server']);
+		$verifyServerInfo = parse_url($this->conf['verify_server']);
 
 		if (empty($verifyServerInfo)) {
 			return array(false, 'recaptcha-not-reachable');

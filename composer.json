@@ -1,5 +1,10 @@
 {
 	"name": "mblaschke/jm-recaptcha",
+	"type": "typo3-cms-extension",
+	"description": "ReCaptcha extension for TYPO3",
+	"homepage": "https://github.com/mblaschke/TYPO3-jm-recaptcha",
+	"license": ["GPL-3.0+"],
+	"keywords": ["TYPO3 CMS"],
 	"authors": [
 		{
 			"name": "Markus Blaschke",
@@ -11,6 +16,5 @@
 			"email": "sebastian@app-zap.de",
 			"role": "developer"
 		}
-	],
-	"type": "typo3-cms-extension"
+	]
 }
