@@ -222,6 +222,11 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 */
 	protected function query_verification_server($data) {
 
+		// if google as verify server and the old recaptcha type are used, fall back to google's old verification url
+		if ($this->conf['verify_server'] === 'https://www.google.com/recaptcha/api/siteverify' && $this->conf['captcha_type'] === 'recaptcha') {
+			$this->conf['verify_server'] = 'http://www.google.com/recaptcha/api/verify';
+		}
+
 		// find first occurence of '//' inside server string
 		$verifyServerInfo = @parse_url($this->conf['verify_server']);
 
