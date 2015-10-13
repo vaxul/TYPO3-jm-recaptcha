@@ -243,6 +243,12 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			curl_setopt($ch,CURLOPT_POST, count($data));
 			curl_setopt($ch,CURLOPT_POSTFIELDS, \TYPO3\CMS\Core\Utility\GeneralUtility::implodeArrayForUrl('', $data));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            if ($proxy_host = $GLOBALS['TYPO3_CONF_VARS']['HTTP']['proxy_host']) {
+                if (!($proxy_port = $GLOBALS['TYPO3_CONF_VARS']['HTTP']['proxy_port'])) {
+                    throw new \TYPO3\CMS\Core\Exception('Proxy host set, but no proxy port. Please specify proxy port too');
+                }
+                curl_setopt($ch, CURLOPT_PROXY, $proxy_host . ':' . $proxy_port);
+            }
 			$response = json_decode(curl_exec($ch), TRUE);
 			$result = array(
 				$response['success'],
