@@ -21,8 +21,8 @@ plugin.tx_jmrecaptcha {
 	# cat=plugin.recaptcha/enable/07; type=boolean; label= Force SSL: Force use of SSL (api_server_secure)
 	use_ssl = 0
 
-	# cat=plugin.recaptcha//08; type=options[,red,white,blackglass,clean,custom]; label= reCAPTCHA Theme: Predefined reCAPTCHA themes
-	theme = red
+	# cat=plugin.recaptcha//08; type=options[light,dark,red,white,blackglass,clean,custom]; label= reCAPTCHA Theme: Predefined reCAPTCHA themes (dark, light only for NoCaptcha)
+	theme =
 
 	# cat=plugin.recaptcha//09; type=int+; label= reCAPTCHA TabIndex: TabIndex of reCAPTCHA field
 	tabindex = 0

@@ -79,7 +79,9 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @return string
 	 */
 	protected function renderNoCaptcha() {
-		return '<div class="g-recaptcha" data-sitekey="' . htmlspecialchars($this->conf['public_key']) . '"></div>';
+		$content = '<script type="text/javascript" src="' . htmlspecialchars($this->conf['server']) . '.js?hl=' . htmlspecialchars($this->conf['lang']) . '"></script>';
+		$content .= '<div class="g-recaptcha" data-sitekey="' . htmlspecialchars($this->conf['public_key']) . '" data-theme="' . htmlspecialchars($this->conf['theme']) . '"></div>';
+		return $content;
 	}
 
 	/**
