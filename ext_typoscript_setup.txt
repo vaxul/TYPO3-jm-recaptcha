@@ -12,7 +12,11 @@ plugin.tx_jmrecaptcha {
 	use_ssl = {$plugin.tx_jmrecaptcha.use_ssl}
 
 	theme = {$plugin.tx_jmrecaptcha.theme}
+	type = {$plugin.tx_jmrecaptcha.type}
+	size = {$plugin.tx_jmrecaptcha.size}
 	tabindex = {$plugin.tx_jmrecaptcha.tabindex}
+	callback = {$plugin.tx_jmrecaptcha.callback}
+	expired_callback = {$plugin.tx_jmrecaptcha.expired_callback}
 	lang = {$plugin.tx_jmrecaptcha.lang}
 
 }

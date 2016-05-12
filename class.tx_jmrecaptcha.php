@@ -39,6 +39,26 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	public $conf;
 
 	/**
+	 * List of valid parameters of the no-CAPTCHA variant
+	 * @see https://developers.google.com/recaptcha/docs/display#render_param
+	 *
+	 * @var array
+	 */
+	private $validNoCaptchaParameters = array(
+		'sitekey', 'theme', 'type', 'size', 'tabindex', 'callback', 'expired-callback'
+	);
+
+	/**
+	 * Mapping of conf to no-CAPTCHA parameters
+	 *
+	 * @var array
+	 */
+	private $conf2NoCaptchaParametersMapping = array(
+		'public_key' => 'sitekey',
+		'expired_callback' => 'expired-callback'
+	);
+
+	/**
 	 * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 */
 	public $typoscriptFrontendController;
@@ -80,8 +100,27 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 */
 	protected function renderNoCaptcha() {
 		$content = '<script type="text/javascript" src="' . htmlspecialchars($this->conf['server']) . '.js?hl=' . htmlspecialchars($this->conf['lang']) . '"></script>';
-		$content .= '<div class="g-recaptcha" data-sitekey="' . htmlspecialchars($this->conf['public_key']) . '" data-theme="' . htmlspecialchars($this->conf['theme']) . '"></div>';
+		$content .= '<div class="g-recaptcha"' . $this->getNoCaptchaParameters() . '></div>';
 		return $content;
+	}
+
+	/**
+	 * Get all available parameters as collected data-attributes for no-CAPTCHA variant
+	 * @return string $noCaptchaParameters
+	 */
+	protected function getNoCaptchaParameters() {
+		$noCaptchaParameters = ' ';
+
+		foreach ($this->conf as $parameter => $value) {
+			if (!empty($value)) {
+				$parameter = isset($this->conf2NoCaptchaParametersMapping[$parameter]) ? $this->conf2NoCaptchaParametersMapping[$parameter] : $parameter;
+				if (in_array($parameter, $this->validNoCaptchaParameters)) {
+					$noCaptchaParameters .= 'data-' . $parameter . '="' . htmlspecialchars($value) . '" ';
+				}
+			}
+		}
+
+		return $noCaptchaParameters;
 	}
 
 	/**

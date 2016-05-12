@@ -21,12 +21,24 @@ plugin.tx_jmrecaptcha {
 	# cat=plugin.recaptcha/enable/07; type=boolean; label= Force SSL: Force use of SSL (api_server_secure)
 	use_ssl = 0
 
-	# cat=plugin.recaptcha//08; type=options[light,dark,red,white,blackglass,clean,custom]; label= reCAPTCHA Theme: Predefined reCAPTCHA themes (dark, light only for NoCaptcha)
+	# cat=plugin.recaptcha//08; type=options[light,dark,red,white,blackglass,clean,custom]; label= reCAPTCHA Theme: Predefined reCAPTCHA themes (light, dark only for NoCaptcha)
 	theme =
 
-	# cat=plugin.recaptcha//09; type=int+; label= reCAPTCHA TabIndex: TabIndex of reCAPTCHA field
+	# cat=plugin.recaptcha//09; type=options[image,audio]; label= reCAPTCHA Fallback type: Optional. The type of CAPTCHA to serve.
+	type = image
+
+	# cat=plugin.recaptcha//10; type=options[normal,compact]; label= reCAPTCHA Size: Optional. The size of the widget.
+	size = normal
+
+	# cat=plugin.recaptcha//11; type=int+; label= reCAPTCHA TabIndex: Optional. The tabindex of the widget and challenge. If other elements in your page use tabindex, it should be set to make user navigation easier.
 	tabindex = 0
 
-	# cat=plugin.recaptcha//10; type=string; label= reCAPTCHA language: Language of reCAPTCHA frontend (autodetected if empty)
+	# cat=plugin.recaptcha//12; type=string; label= reCAPTCHA Callback function: Optional. The name of your callback function to be executed when the user submits a successful CAPTCHA response. The user's response, g-recaptcha-response, will be the input for your callback function.
+	callback =
+
+	# cat=plugin.recaptcha//13; type=string; label= reCAPTCHA Expire callback function: Optional. The name of your callback function to be executed when the recaptcha response expires and the user needs to solve a new CAPTCHA.
+	expired_callback =
+
+	# cat=plugin.recaptcha//14; type=string; label= reCAPTCHA language: Language of reCAPTCHA frontend (autodetected if empty)
 	lang =
 }
