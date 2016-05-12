@@ -99,7 +99,13 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @return string
 	 */
 	protected function renderNoCaptcha() {
-		$content = '<script type="text/javascript" src="' . htmlspecialchars($this->conf['server']) . '.js?hl=' . htmlspecialchars($this->conf['lang']) . '"></script>';
+		$language = $this->getLanguageCode(null);
+		$languageParameter = '';
+		if (!empty($language)) {
+			$languageParameter = 'hl=' . $language;
+		}
+
+		$content = '<script type="text/javascript" src="' . htmlspecialchars($this->conf['server']) . '.js?' . $languageParameter . '"></script>';
 		$content .= '<div class="g-recaptcha"' . $this->getNoCaptchaParameters() . '></div>';
 		return $content;
 	}
@@ -140,7 +146,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 		// Default settings
 		$recaptchaOptions = array(
-			'lang' => self::jsQuote('en'),
+			'lang' => self::jsQuote($this->getLanguageCode()),
 		);
 
 		// Theme
@@ -156,15 +162,6 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		// TabIndex
 		if (!empty($this->conf['custom_theme_widget'])) {
 			$recaptchaOptions['custom_theme_widget'] = self::jsQuote($this->conf['custom_theme_widget']);
-		}
-
-		// Language detection
-		if (!empty($this->conf['lang'])) {
-			// language from plugin configuration
-			$recaptchaOptions['lang'] = self::jsQuote($this->conf['lang']);
-		} elseif (!empty($this->typoscriptFrontendController->tmpl->setup['config.']['language'])) {
-			// automatic language detection (TYPO3 settings)
-			$recaptchaOptions['lang'] = self::jsQuote($this->typoscriptFrontendController->tmpl->setup['config.']['language']);
 		}
 
 		// Custom translations
@@ -205,6 +202,29 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 */
 	protected static function jsQuote($value) {
 		return '\'' . addslashes((string)$value) . '\'';
+	}
+
+	/**
+	 * Get the language code
+	 *
+	 * Get from extension configuration first, fallback to TYPO3 setting config.language.
+	 *
+	 * @return string
+	 */
+	protected function getLanguageCode($fallback = 'en') {
+		$languageCode = '';
+
+		if (!empty($fallback)) {
+			$languageCode = $fallback;
+		}
+		if (!empty($this->conf['lang'])) {
+			// language from plugin configuration
+			$languageCode = htmlspecialchars($this->conf['lang']);
+		} elseif (!empty($this->typoscriptFrontendController->tmpl->setup['config.']['language'])) {
+			// automatic language detection (TYPO3 settings)
+			$languageCode = $this->typoscriptFrontendController->tmpl->setup['config.']['language'];
+		}
+		return $languageCode;
 	}
 
 	/**
