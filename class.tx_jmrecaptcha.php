@@ -105,7 +105,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			$languageParameter = 'hl=' . $language;
 		}
 
-		$content = '<script type="text/javascript" src="' . htmlspecialchars($this->conf['server']) . '.js?' . $languageParameter . '"></script>';
+		$content = '<script type="text/javascript" src="' . htmlspecialchars($this->conf['server'] . '.js?' . $languageParameter) . '"></script>';
 		$content .= '<div class="g-recaptcha"' . $this->getNoCaptchaParameters() . '></div>';
 		return $content;
 	}
@@ -219,7 +219,7 @@ class tx_jmrecaptcha extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 		if (!empty($this->conf['lang'])) {
 			// language from plugin configuration
-			$languageCode = htmlspecialchars($this->conf['lang']);
+			$languageCode = $this->conf['lang'];
 		} elseif (!empty($this->typoscriptFrontendController->tmpl->setup['config.']['language'])) {
 			// automatic language detection (TYPO3 settings)
 			$languageCode = $this->typoscriptFrontendController->tmpl->setup['config.']['language'];
