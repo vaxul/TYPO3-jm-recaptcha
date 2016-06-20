@@ -1,5 +1,5 @@
 {
-	"name": "mblaschke/jm-recaptcha",
+	"name": "vaxul/jm-recaptcha",
 	"type": "typo3-cms-extension",
 	"description": "ReCaptcha extension for TYPO3",
 	"homepage": "https://github.com/mblaschke/TYPO3-jm-recaptcha",
